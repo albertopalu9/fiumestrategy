@@ -1,0 +1,97 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Fiume Custom Colors */
+  --fiume-dark: #1E1A17;
+  --fiume-cream: #F7F2EA;
+  --fiume-terracotta: #D4684A;
+  
+  --background: #1E1A17;
+  --foreground: #F7F2EA;
+  --card: #262220;
+  --card-foreground: #F7F2EA;
+  --popover: #1E1A17;
+  --popover-foreground: #F7F2EA;
+  --primary: #D4684A;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F7F2EA;
+  --secondary-foreground: #1E1A17;
+  --muted: #2A2623;
+  --muted-foreground: #A69F97;
+  --accent: #D4684A;
+  --accent-foreground: #FFFFFF;
+  --destructive: #D4684A;
+  --destructive-foreground: #FFFFFF;
+  --border: #3A3533;
+  --input: #3A3533;
+  --ring: #D4684A;
+  --radius: 0.25rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-mono: 'Geist Mono', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 4px);
+  
+  /* Fiume specific colors */
+  --color-fiume-dark: var(--fiume-dark);
+  --color-fiume-cream: var(--fiume-cream);
+  --color-fiume-terracotta: var(--fiume-terracotta);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Scroll-driven animations */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease-out forwards;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
