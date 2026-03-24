@@ -5,12 +5,12 @@ import { useEffect, useRef } from "react"
 import { useReveal } from "@/components/use-reveal"
 import { useDict } from "@/lib/use-dict"
 
-const caseStudies = [
-  { slug: "leadership-vision-alignment",     number: "01", title: "Leadership Vision Alignment",                   sector: "Entertainment" },
-  { slug: "okr-implementation",              number: "02", title: "Strategic Prioritization & OKR Implementation", sector: "High Technology" },
-  { slug: "governance-process-optimization", number: "03", title: "Governance & Process Optimization",             sector: "Banking & Financial Services" },
-  { slug: "market-sizing-fundraising",       number: "04", title: "Market Sizing & Fundraising Strategy",          sector: "AI / InsurTech" },
-  { slug: "talent-acquisition-strategy",     number: "05", title: "Data-Driven Talent Acquisition Strategy",       sector: "Retail / FMCG" },
+const slugs = [
+  "leadership-vision-alignment",
+  "okr-implementation",
+  "governance-process-optimization",
+  "market-sizing-fundraising",
+  "talent-acquisition-strategy",
 ]
 
 export function CaseStudiesSection() {
@@ -18,6 +18,7 @@ export function CaseStudiesSection() {
   const rowRefs = useRef<(HTMLAnchorElement | null)[]>([])
   const { dict, locale } = useDict()
   const { caseStudies: t } = dict
+  const caseStudies = slugs.map((slug) => ({ slug, ...dict.caseStudy.studies[slug] }))
 
   useEffect(() => {
     const obs = new IntersectionObserver(
