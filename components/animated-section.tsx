@@ -13,6 +13,13 @@ export function AnimatedSection({ children, className = '', delay = 0 }: Animate
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
+    // Respect user's reduced-motion preference — show immediately without animation
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReduced) {
+      setIsVisible(true)
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -33,7 +40,7 @@ export function AnimatedSection({ children, className = '', delay = 0 }: Animate
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
+      className={`transition-all duration-500 ease-out ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       } ${className}`}
     >
